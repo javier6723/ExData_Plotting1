@@ -1,0 +1,7 @@
+househol_power_comp<-subset(read.table("household_power_consumption.txt",header=T,sep=";",na.string="?"),Date %in% c("2/2/2007","1/2/2007"))
+househol_power_comp$Date<-as.Date(househol_power_comp$Date,"%d/%m/%Y")
+househol_power_comp$Time<-strptime(paste(househol_power_comp$Date,househol_power_comp$Time),"%Y-%m-%d %H:%M:%S")
+with(househol_power_comp,plot(Time,Global_active_power,type="l",ylab="Global Active Power (Kilowatts)",xlab=""))
+title(main="Global Active Power")
+dev.copy(png,file="plot2.png")
+dev.off()
